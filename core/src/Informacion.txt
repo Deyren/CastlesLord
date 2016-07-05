@@ -1,0 +1,30 @@
+La clase 'MovimientoDeJugador':
+Hay que pasarle
+   ArrayDeEnemigos enemigos;
+   ArrayDeItems items;  // los items que estan en la pantalla. Implementa AbstractItem.ItemListener
+   ArrayDeUsables usables;
+    Protagonista person;
+
+Esta clase controla los eventos de teclado y demas, y mueve al protagonista que se le pasa por parametro.
+También control si el personaje choca con algun item o equipo
+
+_ cuando el protagonista choca con un item--
+La clase GestorDeEquipoEInventario es llamada desde la clase MovimientoDelJugador, para 
+que el personaje coja el item con el metodo addEquipable 
+_______________________________________________________________________________________________________
+
+____________________________________________________________________________________________
+Las armas se dibujan cada una con su implementacion.
+
+La clase Arma es la que recibe el evento de cuando el personaje ataca, y la que realiza el quitar vida si da con algun enemigo
+
+La animacion se establece en la clase Protagonista o Enemigo
+
+Para añadir items al equipo o inventario, el item
+tiene que pasar por el array de items, que contiene los items de la pantalla
+el array de items les establece un listener a ella, asi que para que
+el personaje aparezca con un arma lo mejor es poner el arma en el array de items 
+y en la posicion del personaje, para que la coja al empezar,
+si se agrega directamente un item al equipo o inventario sin pasar por el ArrayDeItems con la clase gestorDeEquipoEInventario,
+dará un NullPointerExcepcion, por que el item llama al metodo de su listener, pero
+el listener no esta implementado, puesto que quien lo implementa es el arrayDeItems.

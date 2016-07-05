@@ -1,0 +1,68 @@
+
+protagonista.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0001
+  rotate: false
+  xy: 1, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0002
+  rotate: false
+  xy: 67, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0003
+  rotate: false
+  xy: 133, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0004
+  rotate: false
+  xy: 199, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0005
+  rotate: false
+  xy: 265, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0006
+  rotate: false
+  xy: 331, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0007
+  rotate: false
+  xy: 397, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0008
+  rotate: false
+  xy: 463, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+0009
+  rotate: false
+  xy: 529, 1
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1

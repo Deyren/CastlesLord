@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="512" height="32" tilewidth="32" tileheight="32" nextobjectid="40">
+ <tileset firstgid="1" name="unTile2" tilewidth="32" tileheight="32" tilecount="448" columns="28">
+  <image source="unTile2.png" width="896" height="512"/>
+ </tileset>
+ <tileset firstgid="449" name="t2" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="ty2.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1473" name="t4" tilewidth="32" tileheight="32" tilecount="4096" columns="64">
+  <image source="ii.jpg" width="2048" height="2048"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="512" height="32">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup name="CapaDeColision">
+  <object id="1" x="-2" y="832" width="10344" height="8000"/>
+  <object id="4" x="10544.7" y="769" width="92" height="253"/>
+  <object id="6" x="10842" y="830" width="5579.21" height="7618"/>
+  <object id="29" x="0" y="256.016" width="1826.66" height="279.984"/>
+  <object id="30" x="1936" y="737" width="224" height="90"/>
+  <object id="31" x="2288" y="577.333" width="157.333" height="256"/>
+  <object id="33" x="1826.67" y="256" width="232" height="158.667"/>
+  <object id="35" x="2512" y="418.333" width="120" height="62"/>
+  <object id="36" x="2226.67" y="257.667" width="217" height="60.3333"/>
+  <object id="37" x="2587" y="704.667" width="143" height="126.333"/>
+ </objectgroup>
+</map>
