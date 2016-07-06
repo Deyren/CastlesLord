@@ -37,6 +37,7 @@ import com.deyren.castleslord.game.items.equipoabstracto.AbstractPecho;
 import com.deyren.castleslord.game.items.usables.PocionVidaUsable;
 import com.deyren.castleslord.game.movimientos.MovimientoDeJugador;
 import com.deyren.castleslord.game.pantallas.Pantalla1;
+import com.deyren.castleslord.game.personajes.Personaje;
 import com.deyren.castleslord.game.personajes.Protagonista;
 import com.deyren.castleslord.game.personajes.SpriteAnimado;
 import com.deyren.castleslord.game.utiles.Constantes;
@@ -45,7 +46,19 @@ import com.deyren.castleslord.game.utiles.Constantes;
 class InterfaceDeJuego{
 	private Table contenedorMando;
 	private Table contenedorBotones;
-	TextButton botonIzq,botonDer,botonAtaque;
+	private TextButton botonIzq,botonDer,botonAtaque;
+
+	public TextButton getBotonIzq() {
+		return botonIzq;
+	}
+
+	public TextButton getBotonDer() {
+		return botonDer;
+	}
+
+	public TextButton getBotonAtaque() {
+		return botonAtaque;
+	}
 
 	Stage stage;
 	public InterfaceDeJuego(Stage stage){
@@ -223,6 +236,9 @@ public class CastlesLordMain extends ApplicationAdapter {
 	private ArrayDeUsables usables;
 	//private ConjuntoDeSprites todosLosSprites[];
 
+
+	private boolean pruebaTouch=false;
+
 	@Override
 	public void create() {
 		//Gdx.graphics.setContinuousRendering(false);
@@ -303,10 +319,37 @@ public class CastlesLordMain extends ApplicationAdapter {
 
 		stage=new Stage();
 		interfaceDeJuego=new InterfaceDeJuego(stage);
+
+		interfaceDeJuego.getBotonIzq().addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Personaje.moverIzquierda(person);
+			}
+		});
+		interfaceDeJuego.getBotonDer().addListener(new ClickListener(){
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				pruebaTouch=true;
+				return true;
+			}
+
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				  pruebaTouch=false;
+			}
+		});
+
 		Gdx.input.setInputProcessor(stage);
+
 	}
 
 	private void update() {
+
+		if(pruebaTouch){
+			Personaje.moverDerecha(person);
+		}
+
 		movJugador.actualizar();
 	}
 
