@@ -12,6 +12,7 @@ import com.deyren.castleslord.game.Mapa;
 import com.deyren.castleslord.game.arrays.ArrayDeItems;
 import com.deyren.castleslord.game.arrays.ArrayDeUsables;
 import com.deyren.castleslord.game.arrays.ConjuntoDeSprites;
+import com.deyren.castleslord.game.interfacesvisuales.InterfaceDelJuego;
 import com.deyren.castleslord.game.items.AbstractItem;
 import com.deyren.castleslord.game.items.Consumible;
 import com.deyren.castleslord.game.items.Equipable;
@@ -40,7 +41,8 @@ import com.deyren.castleslord.game.utiles.Constantes;
 import java.util.Random;
 
 /**
- *
+ * Contiene el bucle que actualiza al personaje
+ * segun lo que se pulse
  * @author Ruben
  */
 public class MovimientoDeJugador implements Eventos.EventosListener {
@@ -57,12 +59,14 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
     private float margenIzquierdo, margenDerecho,
             margenDeAbajo, margenDeArriba;
 
+    private InterfaceDelJuego interfaceDelJuego;
+
     //Solo para debug, para que el personaje vuele al pulsar N____________________________________________________________________________
     private boolean movimientoLibre = false;
     private int up;
     //________________________________________________________________________________________
 
-    public MovimientoDeJugador(Protagonista personaje, Mapa mapa, OrthographicCamera camara, ArrayDeEnemigos enemigos, ArrayDeItems items, ArrayDeUsables usables) {
+    public MovimientoDeJugador(Protagonista personaje, Mapa mapa, OrthographicCamera camara, ArrayDeEnemigos enemigos, ArrayDeItems items, ArrayDeUsables usables, InterfaceDelJuego interfaceDelJuego) {
         this.person = personaje;
         this.mapa = mapa;
         this.camara = camara;
@@ -70,6 +74,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
         this.items = items;
         this.usables = usables;
         this.eventos = new Eventos();
+        this.interfaceDelJuego=interfaceDelJuego;
         //this.todo = todo;
         //Gdx.input.setInputProcessor(eventos); //Descomentar esto para usar teclado
         margenes();
@@ -121,7 +126,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
     public void actualizar() {
         moverMapa();
 
-        if (eventos.isDown(Input.Keys.D)) {
+        if (eventos.isDown(Input.Keys.D) || interfaceDelJuego.estados[1]) {
             Personaje.moverDerecha(person);
 
             DerPulsado = true;
@@ -129,9 +134,8 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
         } else {
             DerPulsado = false;
         }
-        if (eventos.isDown(Input.Keys.A)) {
+        if (eventos.isDown(Input.Keys.A) || interfaceDelJuego.estados[0]) {
             Personaje.moverIzquierda(person);
-
             IzqPulsado = true;
         } else {
             IzqPulsado = false;
@@ -141,7 +145,6 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
 
         }
         if (eventos.isDown(Input.Keys.S)) {
-
             Personaje.moverAbajo(person);
         }
 
@@ -149,7 +152,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
             //person.posicionar(100, 350);
             enemigos.posicionar(0, 500 + new Random().nextInt(200));
         }
-        if (eventos.isDown(Input.Keys.SPACE)) {
+        if (eventos.isDown(Input.Keys.SPACE) || interfaceDelJuego.estados[3]) {
             person.saltar();
             //person.CambiarVida(200);
 
@@ -170,7 +173,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
             // person.getEquipo().desEquiparArma();
         }
 
-        if (eventos.isDown(Input.Keys.F)) { //tecla F de prueba
+        if (eventos.isDown(Input.Keys.F) || interfaceDelJuego.estados[2]) { //tecla F de prueba
             person.atacar();
 
         }
@@ -199,6 +202,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
             enemigos.addEnemigo(Enemigo.crearEnemigo(mapa.getRectangulosDeColision(),Constantes.Personajes.Personaje1, person, 400, 600, enemigos.getEnemigos()));
         }
 
+        //Establece la animacion del personaje
         person.setEstaAndando(DerPulsado || IzqPulsado);
         if (person.isEstaAndando()) {
             person.establecerAnimacion(SpriteAnimado.TipoDeAnimacion.andando);
@@ -207,6 +211,7 @@ public class MovimientoDeJugador implements Eventos.EventosListener {
         } else {
             person.establecerAnimacion(SpriteAnimado.TipoDeAnimacion.stand);
         }
+
 
         // Solo para debug, para que el personaje vuele___________________________________________
         if (eventos.isDown(Input.Keys.N)) {

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="512" height="32" tilewidth="32" tileheight="32" nextobjectid="40">
  <tileset firstgid="1" name="unTile2" tilewidth="32" tileheight="32" tilecount="448" columns="28">
-  <image source="./unTile2.png" width="896" height="512"/>
+  <image source="unTile2.png" width="896" height="512"/>
  </tileset>
  <tileset firstgid="449" name="t2" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="./ty2.png" width="1024" height="1024"/>
+  <image source="ty2.png" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="1473" name="t4" tilewidth="32" tileheight="32" tilecount="4096" columns="64">
-  <image source="./ii.jpg" width="2048" height="2048"/>
+  <image source="ii.jpg" width="2048" height="2048"/>
  </tileset>
  <layer name="Capa de Patrones 1" width="512" height="32">
   <data encoding="base64" compression="zlib">

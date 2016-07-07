@@ -4,6 +4,7 @@
 
 package com.deyren.castleslord.game.pantallas;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.deyren.castleslord.game.Mapa;
@@ -11,6 +12,7 @@ import com.deyren.castleslord.game.arrays.ArrayDeEnemigos;
 import com.deyren.castleslord.game.arrays.ArrayDeItems;
 import com.deyren.castleslord.game.arrays.ArrayDeUsables;
 import com.deyren.castleslord.game.arrays.ConjuntoDeSprites;
+import com.deyren.castleslord.game.interfacesvisuales.InterfaceDelJuego;
 
 /**
  *Representa una pantalla de juego, Un escenario con todo.
@@ -23,6 +25,7 @@ public abstract class AbstractPantalla {
     protected ArrayDeUsables usables;
     //protected ConjuntoDeSprites todosLosSprites[];
     protected OrthographicCamera camara;
+    protected final InterfaceDelJuego interfaceDelJuego;
 
     public AbstractPantalla(Mapa mapa, ArrayDeEnemigos enemigos, ArrayDeItems items,ArrayDeUsables usables, OrthographicCamera camara) {
         this.mapa = mapa;
@@ -31,8 +34,12 @@ public abstract class AbstractPantalla {
         this.usables=usables;
         //this.todosLosSprites = todosLosSprites;
         this.camara = camara;
+        interfaceDelJuego=new InterfaceDelJuego();
+        Gdx.input.setInputProcessor(interfaceDelJuego.getStage());
     }
-   
+    public InterfaceDelJuego getInterfaceDelJuego(){
+        return this.interfaceDelJuego;
+    }
     
     
     public abstract void actualizar();

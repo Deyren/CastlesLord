@@ -76,26 +76,11 @@ public class Protagonista extends Personaje {
     @Override
     public void atacar() {
         atacando = true;
-//        if (proyectil == null) {
-//            if (mirandoHacia == MirandoHacia.Derecha) {
-//                proyectil = new Proyectil(this, arrayDeEnemigos, new Rectangle(rectangulo.x, rectangulo.y + rectangulo.height / 2, 20, 20), new Texture("luzAmarilla.png"), Proyectil.Direccion.Derecha);
-//            } else {
-//                proyectil = new Proyectil(this, arrayDeEnemigos, new Rectangle(rectangulo.x, rectangulo.y + rectangulo.height / 2, 20, 20), new Texture("luzAmarilla.png"), Proyectil.Direccion.Izquierda);
-//            }
-//        }
     }
 
     @Override
     public void dibujar(SpriteBatch batch, OrthographicCamera camara) {
         super.dibujar(batch, camara);
-//        if (proyectil != null) {
-//            proyectil.dibujar(batch);
-//            if (proyectil.rectangulo.x > Gdx.graphics.getWidth()
-//                    || proyectil.rectangulo.x < 0) {
-//                proyectil = null;
-//            }
-//        }
-//        equipo.dibujar(batch, camara);
         gestorEquipoInventario.dibujar(batch, camara, 15);
     }
 
@@ -168,9 +153,9 @@ public class Protagonista extends Personaje {
 
     @Override
     public void toScreenString(SpriteBatch batch, BitmapFont font, Vector2 pos) {
-        super.toScreenString(batch, font, pos); //To change body of generated methods, choose Tools | Templates.
+        super.toScreenString(batch, font, pos);
         mejoras.toScreenString(batch, font, new Vector2(this.rectangulo.x, this.rectangulo.y - 80));
-        //gestorEquipoInventario.toScreenString(batch, font, new Vector2(this.rectangulo.x,this.rectangulo.y+100));
+        gestorEquipoInventario.toScreenString(batch, font, new Vector2(this.rectangulo.x,this.rectangulo.y+100));
     }
 
 }

@@ -41,6 +41,11 @@ public class Pantalla1 extends AbstractPantalla {
         enemigos.dibujar(batch,camara);        
         items.dibujar(batch,camara);
         usables.dibujar(batch, camara);
+
+    }
+
+    public void dibujarInterface(){
+        interfaceDelJuego.dibujar();
     }
     
 

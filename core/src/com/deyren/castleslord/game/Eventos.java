@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Eventos implements InputProcessor {
 
-    public static String pruebaPulsado="prueba de touch pulsado";
+    //public static String pruebaPulsado="prueba de touch pulsado";
     private final ArrayList<Integer> teclas;
     public ArrayList<Integer> getTeclas() {
         return teclas;
@@ -80,13 +80,13 @@ public class Eventos implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        pruebaPulsado="TouchPulsado";
+        //pruebaPulsado="TouchPulsado";
          return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        pruebaPulsado="Touch soltado";
+        //pruebaPulsado="Touch soltado";
        return false;
      }
 

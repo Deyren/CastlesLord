@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.deyren.castleslord.game.arrays.ArrayDeEnemigos;
 import com.deyren.castleslord.game.arrays.ArrayDeItems;
 import com.deyren.castleslord.game.arrays.ArrayDeUsables;
+import com.deyren.castleslord.game.interfacesvisuales.InterfaceDelJuego;
 import com.deyren.castleslord.game.items.Usable;
 import com.deyren.castleslord.game.items.armas.EspadaSimple;
 import com.deyren.castleslord.game.items.armasabstracto.AbstractEspada;
@@ -43,6 +44,7 @@ import com.deyren.castleslord.game.personajes.SpriteAnimado;
 import com.deyren.castleslord.game.utiles.Constantes;
 
 //Falta el boton de salto
+/*
 class InterfaceDeJuego{
 	private Table contenedorMando;
 	private Table contenedorBotones;
@@ -105,14 +107,14 @@ class InterfaceDeJuego{
 		stage.draw();
 	}
 }
-
+*/
 /*
 //________________para pruebas______________
 public class CastlesLordMain extends ApplicationAdapter {
 	SpriteBatch batch;
 	Skin skin;
 	Stage stage;
-	InterfaceDeJuego interJuego;
+	//InterfaceDeJuego interJuego;
 	@Override
 	public void create() {
 		batch=new SpriteBatch();
@@ -180,7 +182,7 @@ public class CastlesLordMain extends ApplicationAdapter {
 		tabla.row();
 		tabla.add(botIma);
 
-		interJuego=new InterfaceDeJuego(stage);
+		//interJuego=new InterfaceDeJuego(stage);
 
 		Gdx.input.setInputProcessor(stage);
 	}
@@ -197,7 +199,7 @@ public class CastlesLordMain extends ApplicationAdapter {
 
 		batch.begin();
 		stage.draw();
-		interJuego.render();
+		//interJuego.render();
 		batch.end();
 	}
 
@@ -207,8 +209,8 @@ public class CastlesLordMain extends ApplicationAdapter {
 	}
 }
 // ________ fin para pruebas _____
-
 */
+
 
 
 
@@ -217,8 +219,8 @@ public class CastlesLordMain extends ApplicationAdapter {
 	//public static Texture tper;
 	Texture fondo;
 	SpriteBatch batch;
-	private Stage stage;
-	private InterfaceDeJuego interfaceDeJuego;
+
+	//private InterfaceDeJuego interfaceDeJuego;
 
 	Mapa mapa;
 	OrthographicCamera camara;
@@ -237,7 +239,6 @@ public class CastlesLordMain extends ApplicationAdapter {
 	//private ConjuntoDeSprites todosLosSprites[];
 
 
-	private boolean pruebaTouch=false;
 
 	@Override
 	public void create() {
@@ -282,11 +283,11 @@ public class CastlesLordMain extends ApplicationAdapter {
 		items = new ArrayDeItems(600, person);
 		enemigos = new ArrayDeEnemigos(500, person);
 
-
-
-		movJugador = new MovimientoDeJugador(person, mapa, camara, enemigos, items, usables);
-
 		p1 = new Pantalla1(mapa, enemigos, items, usables, camara);
+
+
+		movJugador = new MovimientoDeJugador(person, mapa, camara, enemigos, items, usables,p1.getInterfaceDelJuego());
+
 
 		for (int i = 0; i < 10; i++) {
 			PocionVida pv = new PocionVida(person.rectangulo.x + 200 + (120 * i), 100 * i);
@@ -317,41 +318,14 @@ public class CastlesLordMain extends ApplicationAdapter {
 		usables.addUsable(posiconVida);
 
 
-		stage=new Stage();
-		interfaceDeJuego=new InterfaceDeJuego(stage);
 
-		interfaceDeJuego.getBotonIzq().addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Personaje.moverIzquierda(person);
-			}
-		});
-		interfaceDeJuego.getBotonDer().addListener(new ClickListener(){
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				pruebaTouch=true;
-				return true;
-			}
-
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				  pruebaTouch=false;
-			}
-		});
-
-		Gdx.input.setInputProcessor(stage);
 
 	}
 
 	private void update() {
-
-		if(pruebaTouch){
-			Personaje.moverDerecha(person);
-		}
-
 		movJugador.actualizar();
 	}
+
 
 	@Override
 	public void render() {
@@ -375,7 +349,7 @@ public class CastlesLordMain extends ApplicationAdapter {
 		p1.dibujarObjetos(batch, camara);
 		person.dibujar(batch, camara);
 		enemigos.dibujarNumerosDeBarrasDeVida(batch);
-		interfaceDeJuego.render();
+		p1.dibujarInterface();
 		batch.flush();
 		batch.end();
 
@@ -390,7 +364,7 @@ public class CastlesLordMain extends ApplicationAdapter {
 	private void debug() {
 
 		//font.setColor(Color.BLACK);
-		font.draw(batch, Eventos.pruebaPulsado, 400, 400);
+		//font.draw(batch, Eventos.pruebaPulsado, 400, 400);
 		font.draw(batch, "pulsar N para que el personaje vuele", 350, 370);
 //        font.draw(batch, " Cantidad de enemigos: " + String.valueOf(enemigos.getLenght()), 5, 440);
 //        font.draw(batch, "Y: " + String.valueOf(enemigo.rectangulo.y), 5, 420);
@@ -405,6 +379,7 @@ public class CastlesLordMain extends ApplicationAdapter {
 	public void resize(int width, int height) {
 		movJugador.margenes();
 	}
+
 
 }
 

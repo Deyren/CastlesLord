@@ -109,7 +109,7 @@ public class MyGdxGame extends ApplicationAdapter {
 //        todosLosSprites[0] = items;
 //        todosLosSprites[1] = enemigos;
 
-        movJugador = new MovimientoDeJugador(person, mapa, camara, enemigos, items, usables);
+       // movJugador = new MovimientoDeJugador(person, mapa, camara, enemigos, items, usables);
 
         p1 = new Pantalla1(mapa, enemigos, items, usables, camara);
 
